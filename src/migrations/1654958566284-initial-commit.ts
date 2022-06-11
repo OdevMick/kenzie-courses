@@ -1,16 +1,23 @@
+import { hashSync } from "bcrypt";
 import { MigrationInterface, QueryRunner } from "typeorm";
+import { config } from "dotenv"
 
-export class innitialCommit1653756003972 implements MigrationInterface {
-    name = 'innitialCommit1653756003972'
+config()
+export class initialCommit1654958566284 implements MigrationInterface {
+    name = 'initialCommit1654958566284'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE "users" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "firstName" character varying NOT NULL, "lastName" character varying NOT NULL, "email" character varying NOT NULL, "password" character varying NOT NULL, "isAdm" boolean NOT NULL, "createdAt" TIMESTAMP NOT NULL, "updatedAt" TIMESTAMP NOT NULL, CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "users" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "firstName" character varying NOT NULL, "lastName" character varying NOT NULL, "email" character varying NOT NULL, "password" character varying NOT NULL, "isAdm" boolean NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT 'Sat, 11 Jun 2022 14:42:49 GMT', "updatedAt" TIMESTAMP NOT NULL DEFAULT 'Sat, 11 Jun 2022 14:42:49 GMT', CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "courses" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "courseName" character varying NOT NULL, "duration" character varying NOT NULL, CONSTRAINT "PK_3f70a487cc718ad8eda4e6d58c9" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "courses_students_users" ("coursesId" uuid NOT NULL, "usersId" uuid NOT NULL, CONSTRAINT "PK_ed6755f24befab0c66db7ea2db3" PRIMARY KEY ("coursesId", "usersId"))`);
         await queryRunner.query(`CREATE INDEX "IDX_cfd36369a9b027ccbc64ec2bbf" ON "courses_students_users" ("coursesId") `);
         await queryRunner.query(`CREATE INDEX "IDX_da070fe9a0fe297e5cf5780929" ON "courses_students_users" ("usersId") `);
         await queryRunner.query(`ALTER TABLE "courses_students_users" ADD CONSTRAINT "FK_cfd36369a9b027ccbc64ec2bbf7" FOREIGN KEY ("coursesId") REFERENCES "courses"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
         await queryRunner.query(`ALTER TABLE "courses_students_users" ADD CONSTRAINT "FK_da070fe9a0fe297e5cf57809291" FOREIGN KEY ("usersId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`
+            INSERT INTO "users" ("email","password","firstName","lastName","isAdm")
+            VALUES ('${process.env.ADMIN_EMAIL}','${hashSync(process.env.ADMIN_PASSWORD,10)}','${process.env.ADMIN_NAME}','${process.env.ADMIN_LAST_NAME}',true) 
+        `)
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

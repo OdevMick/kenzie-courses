@@ -30,10 +30,10 @@ export class User {
   @Column()
   isAdm: boolean;
 
-  @Column()
+  @Column({default: new Date().toUTCString()})
   createdAt: Date;
 
-  @Column()
+  @Column({default: new Date().toUTCString()})
   updatedAt: Date;
 
   @ManyToMany(() => Course, course => course.students, { eager: true })
