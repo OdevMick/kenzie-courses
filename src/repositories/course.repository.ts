@@ -32,7 +32,8 @@ class CourseRepository implements ICourseRepo {
 
         course.students = [...students,user]
 
-        return await this.courseRepo.save(course)
+        await this.courseRepo.save(course)
+        return { user, course }
     }
 
     update = async (id: string, payload: Partial<Course>): Promise<UpdateResult> => await this.courseRepo.update(id, {...payload})

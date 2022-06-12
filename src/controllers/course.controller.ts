@@ -17,9 +17,8 @@ class CourseController {
     return res.status(200).json(course);
   };
   acceptStudent = async (req: Request, res: Response) => {
-    const course = await courseService.acceptStudent(req)
-    const { status , message } = course
-    return res.status(status).json({message})
+    await courseService.acceptStudent(req)
+    return res.status(200).json({ message: "Email de inscrição enviado com sucesso." })
   }
 }
 

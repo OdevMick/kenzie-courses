@@ -5,16 +5,22 @@ import { Course, User } from "../entities";
 import { serializedAdminCoursesSchema, 
   serializedCourseSchema, 
   serializedStudentsCoursesSchema } from "../schemas";
+import { sendEmail } from "./mail.service";
 
   class CourseService {
   createCourse = async ({ validated }: Request): Promise<AssertsShape<any>> => {
     const course = await courseRepository.save(validated as Course);
     return await serializedCourseSchema.validate(course, { stripUnknown: true });
   };
-  acceptStudent = async ( { decoded, params}) : Promise<any> => {
-
-    const course = await courseRepository.addStudent( params.id, decoded.id)
-    return { status: 200, message: "Email de inscrição enviado com sucesso." }
+  acceptStudent = async ( { decoded, params }) : Promise<any> => {
+    const { user,course } = await courseRepository.addStudent( params.id, decoded.id)
+    sendEmail({
+      name: user.firstName,
+      email: user.email,
+      courseName: course.courseName,
+      duration: course.duration,
+      subject: "Subscriptions to Kenzie Courses"
+    })
   }
   readAllCourses = async ({decoded}): Promise<AssertsShape<any>> => {
     let newList = [];
