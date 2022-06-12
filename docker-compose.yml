@@ -1,0 +1,25 @@
+services:
+  api:
+    container_name: kenzieCoursesApi
+    build: 
+      context: .
+      dockerfile: Dockerfile
+
+    volumes: 
+      - ./src:/app/src
+    expose: #expose the containers network
+      - 3000
+    ports:
+      - 3000:3000
+    depends_on:
+      - pg
+    command: bash -c "yarn migration:run && yarn dev"
+  pg:
+    container_name: KenzieCoursesDb
+    image: postgres
+    env_file:
+      - .env
+    expose:
+      - 5432
+    ports:
+      - 5432:5432

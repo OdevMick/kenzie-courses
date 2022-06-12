@@ -9,8 +9,12 @@ interface ICourseRepo {
     retrieve: (payload: object) => Promise<Course>
     update: (id: string, payload: Partial<Course>) => Promise<UpdateResult>;
     delete: (id: string) => Promise<DeleteResult>;
+    addStudent: (id:string, userId: string) => Promise<IAddStudent>
 }
-
+interface IAddStudent {
+    user: User,
+    course: Course
+}
 class CourseRepository implements ICourseRepo {
     private courseRepo: Repository<Course>;
 
