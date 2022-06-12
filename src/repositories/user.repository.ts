@@ -20,7 +20,7 @@ class UserRepository implements IUserRepo {
        
     listAll = async () => await this.userRepo.find(); 
 
-    retrieve = async (payload: object) => await this.userRepo.findOneBy({...payload});
+    retrieve = async (payload: object) => await this.userRepo.findOneBy({...payload });
 
     update = async (id: string, payload: Partial<User>) => await this.userRepo.update(id, {...payload})
 }

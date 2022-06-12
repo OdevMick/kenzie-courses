@@ -16,6 +16,11 @@ class CourseController {
     const course = await courseService.updateCourse(req);
     return res.status(200).json(course);
   };
+  acceptStudent = async (req: Request, res: Response) => {
+    const course = await courseService.acceptStudent(req)
+    const { status , message } = course
+    return res.status(status).json({message})
+  }
 }
 
 export default new CourseController();

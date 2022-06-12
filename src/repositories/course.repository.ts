@@ -1,6 +1,7 @@
 import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import { AppDataSource } from "../data-source";
-import { Course } from "../entities";
+import { Course, User } from "../entities";
+import userRepository from "./user.repository";
 
 interface ICourseRepo {
     save: (course: Partial<Course>) => Promise<Course>;
@@ -22,6 +23,17 @@ class CourseRepository implements ICourseRepo {
     listAll = async () => await this.courseRepo.find(); 
 
     retrieve = async (payload: object) => await this.courseRepo.findOneBy({...payload})
+
+    addStudent = async(id:string, userId:string) => {
+        const course = await this.courseRepo.findOneBy({id})
+        const user = await userRepository.retrieve({id:userId})
+
+        const students = await course.students
+
+        course.students = [...students,user]
+
+        return await this.courseRepo.save(course)
+    }
 
     update = async (id: string, payload: Partial<Course>): Promise<UpdateResult> => await this.courseRepo.update(id, {...payload})
 

@@ -5,6 +5,7 @@ import verifyPermission from "./verifyPermission.middleware";
 import getUserByIdOr404 from "./getUserByIdOr404.middleware";
 import verifyAdmin from "./verifyAdmin.middleware";
 import verifiUserExistsUpdate from "./verifyUserExistsUpdate.middleware";
+import verifyCourseExists from "./verifyCourseExists.middleware";
 
 export {
      validateSchema, 
@@ -13,4 +14,6 @@ export {
      verifyPermission, 
      getUserByIdOr404, 
      verifyAdmin,
-     verifiUserExistsUpdate };
+     verifiUserExistsUpdate,
+     verifyCourseExists
+};

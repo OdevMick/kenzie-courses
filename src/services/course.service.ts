@@ -11,7 +11,11 @@ import { serializedAdminCoursesSchema,
     const course = await courseRepository.save(validated as Course);
     return await serializedCourseSchema.validate(course, { stripUnknown: true });
   };
+  acceptStudent = async ( { decoded, params}) : Promise<any> => {
 
+    const course = await courseRepository.addStudent( params.id, decoded.id)
+    return { status: 200, message: "Email de inscrição enviado com sucesso." }
+  }
   readAllCourses = async ({decoded}): Promise<AssertsShape<any>> => {
     let newList = [];
     const courses = await courseRepository.listAll();

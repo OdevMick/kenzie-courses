@@ -12,7 +12,7 @@ export class Course {
   @Column()
   duration: string;
 
-  @ManyToMany(() => User, user => user.courses, { lazy: true })
+  @ManyToMany(() => User, user => user.courses, { lazy: true, cascade: true })
   @JoinTable()
   students: User[];
 }
