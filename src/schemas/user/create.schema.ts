@@ -39,7 +39,7 @@ const serializedCreateUserSchema = yup.object().shape({
     id: yup.string().uuid().optional(),
     courseName: yup.string().optional(),
     duration: yup.string().optional(),
-  })),
+  })).optional(),
 });
 
 export { createUserSchema, serializedCreateUserSchema, userUpdateSchema  }
