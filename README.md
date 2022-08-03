@@ -8,31 +8,31 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 <h3>Cadastro de usuários</h3>
 
-`POST /users - FORMATO DA REQUISIÇÃO `
+`POST /users`
 
 ```json
 {
-  "firstName": "Paulo",
-  "lastName": "Claudio",
-  "email": "pauloclaudio@mail.com",
-  "age": 33,
+  "firstName": "Teste",
+  "lastName": "Teste",
+  "email": "teste@mail.com",
+  "age": 25,
   "password": "1234"
 }
 ```
 
-> Em caso de sucesso, a resposta será:
+> Resposta para requisição que deu certo:
 
-`POST /users - FORMATO DA RESPOSTA - STATUS 201`
+`POST /users - STATUS 201`
 
 ```json
 {
   "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-  "firstName": "Paulo",
-  "lastName": "Claudio",
-  "email": "pauloclaudio@mail.com",
+  "firstName": "Teste",
+  "lastName": "Teste",
+  "email": "teste@mail.com",
   "isAdm": false,
-  "createdAt": "2022-05-28T15:36:36.696Z",
-  "updatedAt": "2022-05-28T15:36:36.696Z",
+  "createdAt": "2022-07-2T10:25:36.551Z",
+  "updatedAt": "2022-05-2T10:25:36.551Z",
   "courses": []
 }
 ```
@@ -41,18 +41,18 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 <h3> Login de usuários</h3>
 
-`POST /login - FORMATO DA REQUISIÇÃO `
+`POST /login `
 
 ```json
 {
-  "email": "pauloclaudio@mail.com",
+  "email": "teste@mail.com",
   "password": "1234"
 }
 ```
 
-> Em caso de sucesso, a resposta será:
+> Resposta para requisição que deu certo:
 
-`POST /login - FORMATO DA RESPOSTA - STATUS 200`
+`POST /login - STATUS 200`
 
 ```json
 {
@@ -64,33 +64,33 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 <h3>Atualização de usuários</h3>
 
-`PATCH /users/:id - FORMATO DA REQUISIÇÃO `
+`PATCH /users/:id `
 
-**Bearer Token Required**
+**É necessário ter Bearer Token**
 
 ```json
 {
-  "firstName": "Pedro",
-  "lastName": "Paulo",
-  "email": "pedropaulo@mail.com",
-  "age": 33,
+  "firstName": "Teste",
+  "lastName": "Teste1",
+  "email": "teste@mail.com",
+  "age": 25,
   "password": "1234"
 }
 ```
 
-> Em caso de sucesso, a resposta será:
+> Resposta para requisição que deu certo:
 
-`PATCH /users/:id - FORMATO DA RESPOSTA - STATUS 200`
+`PATCH /users/:id - STATUS 200`
 
 ```json
 {
   "id": "e45ab10d-2ff5-44fc-a334-d7dfd39892bb",
-  "firstName": "Pedro",
-  "lastName": "Paulo",
-  "email": "pedropaulo@mail.com",
+  "firstName": "Teste",
+  "lastName": "Teste1",
+  "email": "teste@mail.com",
   "isAdm": false,
-  "createdAt": "2022-05-28T17:46:57.980Z",
-  "updatedAt": "2022-05-28T17:46:57.981Z",
+  "createdAt": "2022-07-2T10:25:36.551Z",
+  "updatedAt": "2022-07-2T10:30:21.742Z",
   "courses": []
 }
 ```
@@ -101,21 +101,21 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 `GET /users/:id - NO BODY `
 
-**Bearer Token Required**
+**É necessário ter Bearer Token**
 
-> Em caso de sucesso, a resposta será:
+> Resposta para requisição que deu certo:
 
-`GET /users/:id - FORMATO DA RESPOSTA - STATUS 200`
+`GET /users/:id - STATUS 200`
 
 ```json
 {
   "id": "e45ab10d-2ff5-44fc-a334-d7dfd39892bb",
-  "firstName": "Pedro",
-  "lastName": "Paulo",
-  "email": "pedropaulo@mail.com",
+  "firstName": "Teste",
+  "lastName": "Teste1",
+  "email": "teste@mail.com",
   "isAdm": false,
-  "createdAt": "2022-05-28T17:46:57.980Z",
-  "updatedAt": "2022-05-28T17:46:57.981Z",
+  "createdAt": "2022-07-2T10:25:36.551Z",
+  "updatedAt": "2022-07-2T10:30:21.742Z",
   "courses": []
 }
 ```
@@ -126,41 +126,32 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 `GET /users - NO BODY `
 
-**Bearer Token Required - apenas usuários ADMIN**
+**É necessário ter Bearer Token**
 
-> Em caso de sucesso, a resposta será:
+> Resposta para requisição que deu certo:
 
-`GET /users - FORMATO DA RESPOSTA - STATUS 200`
+`GET /users - STATUS 200`
 
 ```json
 [
   {
     "id": "e45ab10d-2ff5-44fc-a334-d7dfd39892bb",
-    "firstName": "Pedro",
-    "lastName": "Paulo",
-    "email": "pedropaulo@mail.com",
+    "firstName": "Teste",
+    "lastName": "Teste1",
+    "email": "teste@mail.com",
     "isAdm": false,
-    "createdAt": "2022-05-28T17:46:57.980Z",
-    "updatedAt": "2022-05-28T17:46:57.981Z"
+    "createdAt": "2022-07-2T10:25:36.551Z",
+    "updatedAt": "2022-07-2T10:30:21.742Z",
   },
   {
     "id": "af6d45ff-55f7-4ebe-87fc-15a9a97293e8",
-    "firstName": "Claudio",
-    "lastName": "Paulo",
-    "email": "claudiopaulo@mail.com",
+    "firstName": "Teste2",
+    "lastName": "Teste2",
+    "email": "teste2@mail.com",
     "isAdm": true,
-    "createdAt": "2022-05-28T17:46:57.980Z",
-    "updatedAt": "2022-05-28T17:46:57.980Z"
-  },
-  {
-    "id": "5e629f4d-6f80-4c44-a3de-9f30878631ec",
-    "firstName": "Paulo",
-    "lastName": "Claudio",
-    "email": "pauloclaudio@mail.com",
-    "isAdm": true,
-    "createdAt": "2022-05-28T17:46:57.980Z",
-    "updatedAt": "2022-05-28T17:46:57.980Z"
-  }
+    "createdAt": "2022-07-2T10:30:41.124Z",
+    "updatedAt": "2022-07-2T10:30:41.124Z"
+  },...
 ]
 ```
 
@@ -172,26 +163,26 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 <h3>Cadastro de cursos</h3>
 
-`POST /courses - FORMATO DA REQUISIÇÃO `
+`POST /courses `
 
-**Bearer Token Required - apenas usuários ADMIN**
+**É necessário ter Bearer Token**
 
 ```json
 {
-  "courseName": "HTML5",
-  "duration": "3 meses"
+  "courseName": "Física",
+  "duration": "200h"
 }
 ```
 
-> Em caso de sucesso, a resposta será:
+> Resposta para requisição que deu certo:
 
-`POST /courses - FORMATO DA RESPOSTA - STATUS 201`
+`POST /courses - STATUS 201`
 
 ```json
 {
   "id": "f5b22474-a500-4a54-a04f-c25edf8e852c",
-  "courseName": "HTML5",
-  "duration": "3 meses"
+  "courseName": "Física",
+  "duration": "200h"
 }
 ```
 
@@ -201,64 +192,53 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 `GET /courses - NO BODY `
 
-**Bearer Token Required - usuários ADMIN retornam os cursos com os estudantes**
+**É necessário ter Bearer Token**
 
-> Em caso de sucesso, a resposta será (usuário não ADMIN):
+> Resposta para requisição que deu certo (usuário não ADMIN):
 
-`GET /courses - FORMATO DA RESPOSTA - STATUS 200`
+`GET /courses - STATUS 200`
 
 ```json
 [
   {
     "id": "f5b22474-a500-4a54-a04f-c25edf8e852c",
-    "courseName": "HTML5",
-    "duration": "3 meses"
+    "courseName": "Física",
+    "duration": "200h"
   },
   {
     "id": "b36d5f01-a191-4796-b1c0-4713cc5e52be",
-    "courseName": "CSS3",
+    "courseName": "Python-I",
     "duration": "3 meses"
-  },
-  {
-    "id": "4b56e541-90b3-4590-aa0d-83084ab135dd",
-    "courseName": "JavaScript",
-    "duration": "4 meses"
-  }
+  },...
 ]
 ```
 </br>
 
-> Em caso de sucesso, a resposta será (usuário ADMIN):
+> Resposta para requisição que deu certo (usuário ADMIN):
 
-`GET /courses - FORMATO DA RESPOSTA - STATUS 200`
+`GET /courses - STATUS 200`
 
 ```json
 [
   {
     "id": "f5b22474-a500-4a54-a04f-c25edf8e852c",
-    "courseName": "HTML5",
-    "duration": "3 meses",
+    "courseName": "Física",
+    "duration": "200h",
     "student": []
   },
   {
     "id": "b36d5f01-a191-4796-b1c0-4713cc5e52be",
-    "courseName": "CSS3",
+    "courseName": "Python-I",
     "duration": "3 meses",
-    "student": []
-  },
-  {
-    "id": "4b56e541-90b3-4590-aa0d-83084ab135dd",
-    "courseName": "JavaScript",
-    "duration": "4 meses",
     "student": [
       {
-        "id": "5e629f4d-6f80-4c44-a3de-9f30878631ec",
-        "firstName": "Paulo",
-        "lastName": "Claudio",
-        "email": "pauloclaudio@mail.com"    
+        "id": "e45ab10d-2ff5-44fc-a334-d7dfd39892bb",
+        "firstName": "Teste",
+        "lastName": "Teste1",
+        "email": "teste@mail.com"    
       }
     ]
-  }
+  },...
 ]
 ```
 
@@ -266,7 +246,7 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 
 <h3>Atualiza o curso</h3>
 
-`PATCH /courses/:id - FORMATO DA REQUISIÇÂO `
+`PATCH /courses/:id `
 
 ```json
 {
@@ -274,17 +254,17 @@ Api com features de cadastro de Usuários e Cursos, com a possibilidade de se ca
 }
 ```
 
-**Bearer Token Required - apenas usuários ADMIN**
+**É necessário ter Bearer Token**
 
-> Em caso de sucesso, a resposta será:
+> Resposta para requisição que deu certo
 
-`PATCH /courses/:id - FORMATO DA RESPOSTA - STATUS 200`
+`PATCH /courses/:id - STATUS 200`
 
 ```json
 [
   {
     "id": "f5b22474-a500-4a54-a04f-c25edf8e852c",
-    "courseName": "HTML5",
+    "courseName": "Física",
     "duration": "2 meses"
   }
 ]
